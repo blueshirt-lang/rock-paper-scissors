@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function getComputerChoice() {
+            if (0 <= i <= 0.33) {
+                console.log("Computer chose: rock");
+                i = "r";
+            }
+            else if (0.33 < i <= 0.66) {
+                console.log("Computer chose: paper");
+                i = "p";
+            }
+            else {
+                console.log("Computer chose: scissors");
+                i = "s";
+            }
+        }
+
+        function getHumanChoice() {
+            console.log("you chose :" + j);
+        }
+
+        let decideResult = function() {
+            if ((i === "r" && j === "p") || (i === "p" && j == "s") || (i === "s" && j === "r")) {
+                console.log("you win !");
+            }
+            else if ((i === "p" && j === "r") || (i === "r" && j === "s") || (i === "s" && j === "p")) {
+                console.log("you lost");
+            }
+            else {
+                console.log("it's a draw :')");
+            }
+        }
+
+            let i = Math.random();
+            let j = prompt("Rock, paper or scissors? (r, p, s)");
+            getHumanChoice(j);
+            getComputerChoice(i);
+            decideResult(i, j);
+
+        
+    </script>
+</body>
+</html>
