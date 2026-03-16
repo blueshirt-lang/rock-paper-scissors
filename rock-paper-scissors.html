@@ -9,29 +9,29 @@
     <script>
         
         function getComputerChoice() {
-            if (0 <= i <= 0.33) {
+            if (0 <= humanChoice <= 0.33) {
                 console.log("Computer chose: rock");
-                i = "r";
+                humanChoice = "rock";
             }
-            else if (0.33 < i <= 0.66) {
+            else if (0.33 < humanChoice <= 0.66) {
                 console.log("Computer chose: paper");
-                i = "p";
+                humanChoice = "paper";
             }
             else {
                 console.log("Computer chose: scissors");
-                i = "s";
+                humanChoice = "scissors";
             }
         }
 
         function getHumanChoice() {
-            console.log("you chose :" + j);
+            console.log("you chose :" + computerChoice);
         }
 
         let decideResult = function() {
-            if ((i === "r" && j === "p") || (i === "p" && j == "s") || (i === "s" && j === "r")) {
+            if ((humanChoice === "rock" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice == "scissors") || (humanChoice === "scissors" && computerChoice === "rock")) {
                 console.log("you win !");
             }
-            else if ((i === "p" && j === "r") || (i === "r" && j === "s") || (i === "s" && j === "p")) {
+            else if ((humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "scissors" && computerChoice === "paper")) {
                 console.log("you lost");
             }
             else {
@@ -39,11 +39,11 @@
             }
         }
 
-            let i = Math.random();
-            let j = prompt("Rock, paper or scissors? (r, p, s)");
-            getHumanChoice(j);
-            getComputerChoice(i);
-            decideResult(i, j);
+            let humanChoice = Math.random();
+            let computerChoice = prompt("Rock, paper or scissors ? ");
+            getHumanChoice(computerChoice);
+            getComputerChoice(humanChoice);
+            decideResult(humanChoice, computerChoice);
 
         
     </script>
