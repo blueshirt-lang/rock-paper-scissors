@@ -9,41 +9,41 @@
     <script>
         
         function getComputerChoice() {
-            if (0 <= humanChoice <= 0.33) {
+            if (0 <= computerChoice <= 0.33) {
                 console.log("Computer chose: rock");
-                humanChoice = "rock";
+                computerChoice = "rock";
             }
-            else if (0.33 < humanChoice <= 0.66) {
+            else if (0.33 < computerChoice <= 0.66) {
                 console.log("Computer chose: paper");
-                humanChoice = "paper";
+                computerChoice = "paper";
             }
             else {
                 console.log("Computer chose: scissors");
-                humanChoice = "scissors";
+                computerChoice = "scissors";
             }
         }
 
         function getHumanChoice() {
-            console.log("you chose :" + computerChoice);
+            console.log("you chose :" + humanChoice);
         }
 
         let decideResult = function() {
-            if ((humanChoice === "rock" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice == "scissors") || (humanChoice === "scissors" && computerChoice === "rock")) {
+            if ((computerChoice === "rock" && humanChoice === "paper") || (computerChoice === "paper" && humanChoice == "scissors") || (computerChoice === "scissors" && humanChoice === "rock")) {
                 console.log("you win !");
             }
-            else if ((humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "scissors" && computerChoice === "paper")) {
+            else if ((computerChoice === "paper" && humanChoice === "rock") || (computerChoice === "rock" && humanChoice === "scissors") || (computerChoice === "scissors" && humanChoice === "paper")) {
                 console.log("you lost");
             }
             else {
-                console.log("it's a draw :')");
+                console.log("it'scissors a draw :')");
             }
         }
 
-            let humanChoice = Math.random();
-            let computerChoice = prompt("Rock, paper or scissors ? ");
-            getHumanChoice(computerChoice);
-            getComputerChoice(humanChoice);
-            decideResult(humanChoice, computerChoice);
+            let computerChoice = Math.random();
+            let humanChoice = prompt("Rock, paper or scissors? (rock, paper, scissors)");
+            getHumanChoice(humanChoice);
+            getComputerChoice(computerChoice);
+            decideResult(computerChoice, humanChoice);
 
         
     </script>
