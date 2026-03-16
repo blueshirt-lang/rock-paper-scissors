@@ -9,6 +9,7 @@
     <script>
         
         function getComputerChoice() {
+            let computerChoice = Math.random();
             if (0 <= computerChoice <= 0.33) {
                 console.log("Computer chose: rock");
                 computerChoice = "rock";
@@ -21,29 +22,39 @@
                 console.log("Computer chose: scissors");
                 computerChoice = "scissors";
             }
+            return computerChoice;
         }
+
+        let computerChoice = getComputerChoice();
 
         function getHumanChoice() {
-            console.log("you chose :" + humanChoice);
+            let userInput = prompt("Rock, paper or scissors? (rock, paper, scissors)").toLowerCase();
+            console.log("you chose :" + userInput);
+            return userInput;
         }
 
-        let decideResult = function() {
-            if ((computerChoice === "rock" && humanChoice === "paper") || (computerChoice === "paper" && humanChoice == "scissors") || (computerChoice === "scissors" && humanChoice === "rock")) {
-                console.log("you win !");
+        let humanChoice = getHumanChoice();
+
+        function playRound(computerChoice, humanChoice) {
+            if ((computerChoice === "rock" && humanChoice === "paper") || (computerChoice === "paper" && humanChoice === "scissors")
+             || (computerChoice === "scissors" && humanChoice === "rock")) {
+                console.log("you win !" + computerChoice + " " + humanChoice);
             }
-            else if ((computerChoice === "paper" && humanChoice === "rock") || (computerChoice === "rock" && humanChoice === "scissors") || (computerChoice === "scissors" && humanChoice === "paper")) {
-                console.log("you lost");
+            else if ((computerChoice === "paper" && humanChoice === "rock") || (computerChoice === "rock" && humanChoice === "scissors")
+             || (computerChoice === "scissors" && humanChoice === "paper")) {
+                console.log("you lost : " + computerChoice + " " + humanChoice);
             }
             else {
-                console.log("it'scissors a draw :')");
+                console.log("it's a draw :')" + computerChoice + " " + humanChoice);
             }
         }
 
-            let computerChoice = Math.random();
-            let humanChoice = prompt("Rock, paper or scissors? (rock, paper, scissors)");
-            getHumanChoice(humanChoice);
-            getComputerChoice(computerChoice);
-            decideResult(computerChoice, humanChoice);
+        let humanScore = 0;
+        let computerScore = 0;
+        
+        getHumanChoice();
+        getComputerChoice();
+        playRound(computerChoice, humanChoice);
 
         
     </script>
