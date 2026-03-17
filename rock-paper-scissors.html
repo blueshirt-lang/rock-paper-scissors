@@ -25,36 +25,37 @@
             return computerChoice;
         }
 
-        let computerChoice = getComputerChoice();
-
         function getHumanChoice() {
             let userInput = prompt("Rock, paper or scissors? (rock, paper, scissors)").toLowerCase();
             console.log("you chose :" + userInput);
             return userInput;
         }
 
-        let humanChoice = getHumanChoice();
-
         function playRound(computerChoice, humanChoice) {
             if ((computerChoice === "rock" && humanChoice === "paper") || (computerChoice === "paper" && humanChoice === "scissors")
              || (computerChoice === "scissors" && humanChoice === "rock")) {
-                console.log("you win !" + computerChoice + " " + humanChoice);
+                console.log("you win !" + humanChoice + " beats " + computerChoice);
             }
             else if ((computerChoice === "paper" && humanChoice === "rock") || (computerChoice === "rock" && humanChoice === "scissors")
              || (computerChoice === "scissors" && humanChoice === "paper")) {
-                console.log("you lost : " + computerChoice + " " + humanChoice);
+                console.log("you lost : " + computerChoice + " beats " + humanChoice);
             }
             else {
                 console.log("it's a draw :')" + computerChoice + " " + humanChoice);
             }
         }
 
+        function playGame() {
+            let computerChoice = getComputerChoice();
+            let humanChoice = getHumanChoice();
+            playRound(computerChoice, humanChoice);
+        }
+
         let humanScore = 0;
         let computerScore = 0;
+        playGame()
         
-        //getHumanChoice();
-        //getComputerChoice();
-        playRound(computerChoice, humanChoice);
+        
 
         
     </script>
