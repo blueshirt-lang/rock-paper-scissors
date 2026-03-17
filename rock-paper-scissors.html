@@ -35,20 +35,38 @@
             if ((computerChoice === "rock" && humanChoice === "paper") || (computerChoice === "paper" && humanChoice === "scissors")
              || (computerChoice === "scissors" && humanChoice === "rock")) {
                 console.log("you win !" + humanChoice + " beats " + computerChoice);
+                humanScore++;
             }
             else if ((computerChoice === "paper" && humanChoice === "rock") || (computerChoice === "rock" && humanChoice === "scissors")
              || (computerChoice === "scissors" && humanChoice === "paper")) {
                 console.log("you lost : " + computerChoice + " beats " + humanChoice);
+                computerScore++;
             }
             else {
                 console.log("it's a draw :')" + computerChoice + " " + humanChoice);
             }
         }
 
+        function determineWinner() {
+            if (humanScore > computerScore) {
+                console.log("Congratulations! You Won!");
+            }
+            else if (humanScore < computerScore) {
+                console.log("Sorry, you lost :')");
+            }
+            else {
+                console.log("It's a draw");
+            }
+            console.log("Your Score: " + humanScore + " Computer's Score: " + computerScore);
+        }
+
         function playGame() {
-            let computerChoice = getComputerChoice();
-            let humanChoice = getHumanChoice();
-            playRound(computerChoice, humanChoice);
+            for (let numberOfGamesPlayed = 0; numberOfGamesPlayed < 5; numberOfGamesPlayed++) {
+                let humanChoice = getHumanChoice();
+                let computerChoice = getComputerChoice();
+                playRound(computerChoice, humanChoice);
+            }
+            determineWinner();
         }
 
         let humanScore = 0;
