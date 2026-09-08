@@ -18,16 +18,13 @@
         
         function getComputerChoice() {
             let computerChoice = Math.random();
-            if (0 <= computerChoice <= 0.33) {
-                console.log("Computer chose: rock");
+            if (computerChoice <= 0.33) {
                 computerChoice = "rock";
             }
-            else if (0.33 < computerChoice <= 0.66) {
-                console.log("Computer chose: paper");
+            else if (computerChoice > 0.33 && computerChoice <= 0.66) {
                 computerChoice = "paper";
             }
             else {
-                console.log("Computer chose: scissors");
                 computerChoice = "scissors";
             }
             return computerChoice;
@@ -45,11 +42,7 @@
         const scissors = document.querySelector("scissors");
         scissorsBtn.addEventListener("click", getHumanChoice);
 
-        function getHumanChoice() {
-            let userInput = btn;
-            console.log("you chose :" + userInput);
-            return userInput;
-        }
+    
 
         function playRound(computerChoice, humanChoice) {
             if ((computerChoice === "rock" && humanChoice === "paper") || (computerChoice === "paper" && humanChoice === "scissors")
