@@ -7,12 +7,12 @@
 </head>
 <body>
 
-    <button class="rock">Rock</button>
-    <button class="paper">Paper</button>
-    <button class="scissors">Scissors</button>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
 
-    <div class="score"></div>
-    <div class="results"></div>
+    <div id="score"></div>
+    <div id="results"></div>
     
     <script>
         
@@ -33,16 +33,16 @@
         function playRound(computerChoice, humanChoice) {
             if ((computerChoice === "rock" && humanChoice === "paper") || (computerChoice === "paper" && humanChoice === "scissors")
              || (computerChoice === "scissors" && humanChoice === "rock")) {
-                results.textContent = "You win! " + humanChoice + " beats " + computerChoice;
+                resultsDisplay.textContent = "You win! " + humanChoice + " beats " + computerChoice;
                 humanScore++;
             }
             else if ((computerChoice === "paper" && humanChoice === "rock") || (computerChoice === "rock" && humanChoice === "scissors")
              || (computerChoice === "scissors" && humanChoice === "paper")) {
-                results.textContent = "Computer wins :') " + computerChoice + " beats " + humanChoice;
+                resultsDisplay.textContent = "Computer wins :') " + computerChoice + " beats " + humanChoice;
                 computerScore++;
             }
             else {
-                console.log("it's a draw :')" + computerChoice + " " + humanChoice);
+                resultsDisplay.textContent = "it's a draw :')" + computerChoice + " " + humanChoice;
             }
             roundsPlayed++;
             if (roundsPlayed == 5) {
@@ -56,34 +56,42 @@
                 scoreDisplay.textContent = "You : " + humanScore + " Computer : " + computerScore;
             }
             else if (humanScore < computerScore) {
-                console.log("Sorry, you lost :')");
+                scoreDisplay.textContent = "Sorry, you lost :')";
+            }
+            else if (humanScore != "rock" || humanScore != "paper" || humanScore != "scissors") {
+                resultsDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " + computerScore;
             }
             else {
-                console.log("It's a draw");
-            }
-            console.log("Your Score: " + humanScore + " Computer's Score: " + computerScore);
+                scoreDisplay.textContent = "It's a draw";
+            };
+            resultsDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " + computerScore;
         }
 
 
-        const rock = document.querySelector("rock");
-        rock.addEventListener("click", function() {
+        const rockButton = document.querySelector("#rock");
+        rockButton.addEventListener("click", function() {
             playRound(getComputerChoice(), "rock");
         });
 
-        const paper = document.querySelector("paper");
-        paper.addEventListener("click", function() {
+        const paperButton = document.querySelector("#paper");
+        paperButton.addEventListener("click", function() {
             playRound(getComputerChoice(), "paper");
         });    
 
-        const scissors = document.querySelector("scissors");
-        scissors.addEventListener("click", function() {
+        const scissorsButton = document.querySelector("#scissors");
+        scissorsButton.addEventListener("click", function() {
             playRound(getComputerChoice(), "scissors");
         });
+
+        const scoreDisplay = document.querySelector("#score");
+        const resultsDisplay = document.querySelector("#results");
 
 
         let humanScore = 0;
         let computerScore = 0;
         let roundsPlayed = 0;
+
+        determineWinner();
 
         
     </script>
