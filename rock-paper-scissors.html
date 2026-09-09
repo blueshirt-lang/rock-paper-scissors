@@ -16,7 +16,7 @@
     
     <script>
         
-        function getComputerChoice() {
+        function getComputerChoice() {  // DONE
             let computerChoice = Math.random();
             if (computerChoice <= 0.33) {
                 computerChoice = "rock";
@@ -31,56 +31,103 @@
         }
 
         function playRound(computerChoice, humanChoice) {
-            if ((computerChoice === "rock" && humanChoice === "paper") || (computerChoice === "paper" && humanChoice === "scissors")
-             || (computerChoice === "scissors" && humanChoice === "rock")) {
-                resultsDisplay.textContent = "You win! " + humanChoice + " beats " + computerChoice;
+            if ((computerChoice === "rock" && humanChoice === "paper") || 
+                (computerChoice === "paper" && humanChoice === "scissors") ||
+                (computerChoice === "scissors" && humanChoice === "rock")) {
+
+                resultsDisplay.textContent = "You win! " + humanChoice + " beats " 
+                + computerChoice;
                 humanScore++;
             }
-            else if ((computerChoice === "paper" && humanChoice === "rock") || (computerChoice === "rock" && humanChoice === "scissors")
-             || (computerChoice === "scissors" && humanChoice === "paper")) {
-                resultsDisplay.textContent = "Computer wins :') " + computerChoice + " beats " + humanChoice;
+
+            else if ((computerChoice === "paper" && humanChoice === "rock") ||
+                     (computerChoice === "rock" && humanChoice === "scissors") ||
+                     (computerChoice === "scissors" && humanChoice === "paper")) {
+
+                resultsDisplay.textContent = "Computer wins :') " + computerChoice + " beats " 
+                + humanChoice;
                 computerScore++;
             }
+
             else {
-                resultsDisplay.textContent = "it's a draw :')" + computerChoice + " " + humanChoice;
+
+                resultsDisplay.textContent = "it's a draw :')" + computerChoice + " " 
+                + humanChoice;
             }
+
             roundsPlayed++;
-            if (roundsPlayed == 5) {
+            if (roundsPlayed === 5) {
                 determineWinner();
             }
         }
 
         function determineWinner() {
-            if (humanScore > computerScore) {
-                const scoreDisplay = document.querySelector("score");
-                scoreDisplay.textContent = "You : " + humanScore + " Computer : " + computerScore;
-            }
-            else if (humanScore < computerScore) {
-                scoreDisplay.textContent = "Sorry, you lost :')";
-            }
-            else if (humanScore != "rock" || humanScore != "paper" || humanScore != "scissors") {
-                resultsDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " + computerScore;
-            }
-            else {
-                scoreDisplay.textContent = "It's a draw";
-            };
-            resultsDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " + computerScore;
-        }
 
+            const scoreDisplay = document.querySelector("#score");
+            const resultsDisplay = document.querySelector("#results");
+            const button = document.querySelector("button");
+
+            if (humanScore > computerScore) {
+                
+                resultsDisplay.textContent = "Congratulations! You win!";
+                scoreDisplay.textContent = "You : " + humanScore + " Computer : " 
+                + computerScore;
+                button.addEventListener("click", (event) => {
+                event.preventDefault();
+            })
+            }
+
+            else if (humanScore < computerScore) {
+
+                resultsDisplay.textContent = "Sorry, you lost :')";
+                scoreDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " 
+                + computerScore;
+                button.addEventListener("click", (event) => {
+                event.preventDefault();
+            })
+            }
+
+            else if (humanScore != "rock" || humanScore != "paper" || humanScore != "scissors") {
+
+                scoreDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " 
+                + computerScore;
+                button.addEventListener("click", (event) => {
+                event.preventDefault();
+            })
+                
+            }
+
+            else if (humanScore === computerScore) {
+
+                scoreDisplay.textContent = "It's a draw";
+                resultsDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " 
+                + computerScore;
+                button.addEventListener("click", (event) => {
+                event.preventDefault();
+            })
+            };
+
+
+            
+        }
 
         const rockButton = document.querySelector("#rock");
         rockButton.addEventListener("click", function() {
             playRound(getComputerChoice(), "rock");
+            event.preventDefault();
+
         });
 
         const paperButton = document.querySelector("#paper");
         paperButton.addEventListener("click", function() {
             playRound(getComputerChoice(), "paper");
+            event.preventDefault();
         });    
 
         const scissorsButton = document.querySelector("#scissors");
         scissorsButton.addEventListener("click", function() {
             playRound(getComputerChoice(), "scissors");
+            event.preventDefault();
         });
 
         const scoreDisplay = document.querySelector("#score");
