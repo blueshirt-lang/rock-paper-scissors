@@ -36,6 +36,10 @@
 
         function playRound(computerChoice, humanChoice) {
 
+            if (roundsPlayed === 5) {
+                return;
+            }
+
             if ((computerChoice === "rock" && humanChoice === "paper") || 
                 (computerChoice === "paper" && humanChoice === "scissors") ||
                 (computerChoice === "scissors" && humanChoice === "rock")) {
@@ -64,12 +68,11 @@
 
             scoreDisplay.textContent = "You : " + humanScore + " Computer : " 
                                      + computerScore + " Rounds Played : " + roundsPlayed;
-            button.addEventListener("click", (event) => {
-                event.preventDefault();
-            });
+        
             
             if (roundsPlayed === 5) {
                 determineWinner();
+            
             }
         }
 
@@ -77,11 +80,11 @@
 
             if (humanScore > computerScore) {
                 
-                resultsDisplay.textContent = "Congratulations! You win!";
+                resultsDisplay.textContent = "Congratulations! You WON THIS ROUND!";
 
             } else if (humanScore < computerScore) {
 
-                resultsDisplay.textContent = "Sorry, you lost :')";
+                resultsDisplay.textContent = "Sorry, you LOST THIS ROUND :')";
                 
 
             } else if (humanScore === 0 && computerScore === 0) {
@@ -92,7 +95,7 @@
                 
             } else if (humanScore === computerScore) {
 
-                scoreDisplay.textContent = "It's a draw";
+                scoreDisplay.textContent = "UH OH, THIS ROUND IS A DRAW!";
                 
             };
 
@@ -124,6 +127,7 @@
         let computerScore = 0;
         let roundsPlayed = 0;
         determineWinner();
+    
 
         
     </script>
