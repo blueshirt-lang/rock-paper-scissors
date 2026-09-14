@@ -15,6 +15,10 @@
     <div id="results"></div>
     
     <script>
+
+        const scoreDisplay = document.querySelector("#score"); // div#score doesn't refresh, but score doesn't update
+        const resultsDisplay = document.querySelector("#results");  // div#results refresh, are updated. but we want to keep the previous lines and then add new lines
+        const button = document.querySelector("button");
         
         function getComputerChoice() {  // DONE
             let computerChoice = Math.random();
@@ -31,6 +35,7 @@
         }
 
         function playRound(computerChoice, humanChoice) {
+
             if ((computerChoice === "rock" && humanChoice === "paper") || 
                 (computerChoice === "paper" && humanChoice === "scissors") ||
                 (computerChoice === "scissors" && humanChoice === "rock")) {
@@ -44,18 +49,25 @@
                      (computerChoice === "rock" && humanChoice === "scissors") ||
                      (computerChoice === "scissors" && humanChoice === "paper")) {
 
-                resultsDisplay.textContent = "Computer wins :') " + computerChoice + " beats " 
+                resultsDisplay.textContent = "Computer wins." + computerChoice + " beats " 
                 + humanChoice;
                 computerScore++;
             }
 
             else {
 
-                resultsDisplay.textContent = "it's a draw :')" + computerChoice + " " 
+                resultsDisplay.textContent = "it's a draw." + computerChoice + " " 
                 + humanChoice;
             }
 
             roundsPlayed++;
+
+            scoreDisplay.textContent = "You : " + humanScore + " Computer : " 
+                                     + computerScore + " Rounds Played : " + roundsPlayed;
+            button.addEventListener("click", (event) => {
+                event.preventDefault();
+            });
+            
             if (roundsPlayed === 5) {
                 determineWinner();
             }
@@ -63,81 +75,54 @@
 
         function determineWinner() {
 
-            const scoreDisplay = document.querySelector("#score");
-            const resultsDisplay = document.querySelector("#results");
-            const button = document.querySelector("button");
-
             if (humanScore > computerScore) {
                 
                 resultsDisplay.textContent = "Congratulations! You win!";
-                scoreDisplay.textContent = "You : " + humanScore + " Computer : " 
-                + computerScore;
-                button.addEventListener("click", (event) => {
-                event.preventDefault();
-            })
-            }
 
-            else if (humanScore < computerScore) {
+            } else if (humanScore < computerScore) {
 
                 resultsDisplay.textContent = "Sorry, you lost :')";
-                scoreDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " 
-                + computerScore;
-                button.addEventListener("click", (event) => {
-                event.preventDefault();
-            })
-            }
-
-            else if (humanScore != "rock" || humanScore != "paper" || humanScore != "scissors") {
-
-                scoreDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " 
-                + computerScore;
-                button.addEventListener("click", (event) => {
-                event.preventDefault();
-            })
                 
-            }
 
-            else if (humanScore === computerScore) {
+            } else if (humanScore === 0 && computerScore === 0) {
+
+                scoreDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " 
+                + computerScore;
+               
+                
+            } else if (humanScore === computerScore) {
 
                 scoreDisplay.textContent = "It's a draw";
-                resultsDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " 
-                + computerScore;
-                button.addEventListener("click", (event) => {
-                event.preventDefault();
-            })
+                
             };
 
-
+            scoreDisplay.textContent = "You : " + humanScore + " Computer : " 
+                                     + computerScore + " Rounds Played : " + roundsPlayed;
+            button.addEventListener("click", (event) => {
+                event.preventDefault();
+            });
             
         }
 
         const rockButton = document.querySelector("#rock");
         rockButton.addEventListener("click", function() {
             playRound(getComputerChoice(), "rock");
-            event.preventDefault();
 
         });
 
         const paperButton = document.querySelector("#paper");
         paperButton.addEventListener("click", function() {
             playRound(getComputerChoice(), "paper");
-            event.preventDefault();
         });    
 
         const scissorsButton = document.querySelector("#scissors");
         scissorsButton.addEventListener("click", function() {
             playRound(getComputerChoice(), "scissors");
-            event.preventDefault();
         });
-
-        const scoreDisplay = document.querySelector("#score");
-        const resultsDisplay = document.querySelector("#results");
-
 
         let humanScore = 0;
         let computerScore = 0;
         let roundsPlayed = 0;
-
         determineWinner();
 
         
