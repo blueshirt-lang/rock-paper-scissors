@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+
+    <div id="score"></div>
+    <div id="results"></div>
+    
+    <script>
+
+        const scoreDisplay = document.querySelector("#score"); // div#score doesn't refresh, but score doesn't update
+        const resultsDisplay = document.querySelector("#results");  // div#results refresh, are updated. but we want to keep the previous lines and then add new lines
+        const button = document.querySelector("button");
+        
+        function getComputerChoice() {  // DONE
+            let computerChoice = Math.random();
+            if (computerChoice <= 0.33) {
+                computerChoice = "rock";
+            }
+            else if (computerChoice > 0.33 && computerChoice <= 0.66) {
+                computerChoice = "paper";
+            }
+            else {
+                computerChoice = "scissors";
+            }
+            return computerChoice;
+        }
+
+        function playRound(computerChoice, humanChoice) {
+
+            if (roundsPlayed === 5) {
+                return;
+            }
+
+            if ((computerChoice === "rock" && humanChoice === "paper") || 
+                (computerChoice === "paper" && humanChoice === "scissors") ||
+                (computerChoice === "scissors" && humanChoice === "rock")) {
+
+                resultsDisplay.textContent = "You win! " + humanChoice + " beats " 
+                + computerChoice;
+                humanScore++;
+            }
+
+            else if ((computerChoice === "paper" && humanChoice === "rock") ||
+                     (computerChoice === "rock" && humanChoice === "scissors") ||
+                     (computerChoice === "scissors" && humanChoice === "paper")) {
+
+                resultsDisplay.textContent = "Computer wins." + computerChoice + " beats " 
+                + humanChoice;
+                computerScore++;
+            }
+
+            else {
+
+                resultsDisplay.textContent = "it's a draw." + computerChoice + " " 
+                + humanChoice;
+            }
+
+            roundsPlayed++;
+
+            scoreDisplay.textContent = "You : " + humanScore + " Computer : " 
+                                     + computerScore + " Rounds Played : " + roundsPlayed;
+        
+            
+            if (roundsPlayed === 5) {
+                determineWinner();
+            
+            }
+        }
+
+        function determineWinner() {
+
+            if (humanScore > computerScore) {
+                
+                resultsDisplay.textContent = "Congratulations! You WON THIS ROUND!";
+
+            } else if (humanScore < computerScore) {
+
+                resultsDisplay.textContent = "Sorry, you LOST THIS ROUND :')";
+                
+
+            } else if (humanScore === 0 && computerScore === 0) {
+
+                scoreDisplay.textContent = "Your Score: " + humanScore + " Computer's Score: " 
+                + computerScore;
+               
+                
+            } else if (humanScore === computerScore) {
+
+                scoreDisplay.textContent = "UH OH, THIS ROUND IS A DRAW!";
+                
+            };
+
+            scoreDisplay.textContent = "You : " + humanScore + " Computer : " 
+                                     + computerScore + " Rounds Played : " + roundsPlayed;
+            button.addEventListener("click", (event) => {
+                event.preventDefault();
+            });
+            
+        }
+
+        const rockButton = document.querySelector("#rock");
+        rockButton.addEventListener("click", function() {
+            playRound(getComputerChoice(), "rock");
+
+        });
+
+        const paperButton = document.querySelector("#paper");
+        paperButton.addEventListener("click", function() {
+            playRound(getComputerChoice(), "paper");
+        });    
+
+        const scissorsButton = document.querySelector("#scissors");
+        scissorsButton.addEventListener("click", function() {
+            playRound(getComputerChoice(), "scissors");
+        });
+
+        let humanScore = 0;
+        let computerScore = 0;
+        let roundsPlayed = 0;
+        determineWinner();
+    
+
+        
+    </script>
+</body>
+</html>
